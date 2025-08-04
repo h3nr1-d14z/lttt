@@ -61,6 +61,13 @@ export default function Home() {
 
   const currentQuestion = filteredQuestions[currentQuestionIndex] || filteredQuestions[0];
 
+  // Auto show answer in study mode
+  useEffect(() => {
+    if (viewMode === 'study' && !isTransitioning) {
+      setShowAnswer(true);
+    }
+  }, [currentQuestionIndex, viewMode, isTransitioning]);
+
   // Load saved data
   useEffect(() => {
     const savedProgress = localStorage.getItem('lttt-progress');
